@@ -25,12 +25,14 @@ io.on("connection", (socket) => {
       message: "Joined",
     });
   });
+
   socket.on("message", (data) => {
     io.emit("send", {
       user: users[data.id],
       message: data.message,
     });
   });
+
   socket.on("disconnect", () => {
     io.emit("left", {
       user: users[socket.id],
